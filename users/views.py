@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from .serializers import Signup
+from .models import User
+from rest_framework.viewsets import ModelViewSet
 
-# Create your views here.
+class SignUpView(ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = Signup
+
+
