@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users',
-    'rest_framework'
+    'rest_framework',
+    'rest_framework_simpljwt',
+    'rest_framewok_simplejwt.token_blacklist'
 ]
 
 MIDDLEWARE = [
@@ -138,3 +140,22 @@ MAILERS = {
 }
 
 AUTH_USER_MODEL = 'users.User'
+
+
+# Rest_framework_simplejwt  settings
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES' :(
+        'rest_framewok_simpljwt.authentication.JWTAuthentication',
+        
+    )
+}
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True, 
+}
