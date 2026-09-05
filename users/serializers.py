@@ -42,7 +42,7 @@ class PasswordResetRequestSerializer(serializers.Serializer):
             user = User.objects.get(email=email)
             
             uidb64 = urlsafe_base64_encode(force_bytes(user.id))
-            token = PasswordResetTokenGenerator.make_token(user)
+            token = PasswordResetTokenGenerator().make_token(user)
             reset_link = f"http://localhost:8000/auth/password-reset-confirm/{uidb64}/{token}/"
             
             
