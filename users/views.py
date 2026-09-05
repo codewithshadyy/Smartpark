@@ -1,4 +1,4 @@
-from .serializers import Signup, PasswordResetRequestSerializer
+from .serializers import Signup, PasswordResetRequestSerializer, NewPasswordSerializer
 from .models import User
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.generics import CreateAPIView
@@ -42,6 +42,22 @@ class PasswordResetView(generics.CreateAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         return Response({"Message":"reset link sent to email"})
+class NewPasswordView(generics.CreateAPIView):
+    serializer_class = NewPasswordSerializer
+    
+    def post(self, request, uidb64, token):
+        serializer = self.get_serializer(
+            data = {
+                'password': request.data.get('password'),
+                'uidb64': uidb64,
+                'token': token
+
+            }
+        )
+        
+        
+        serializer.is_valid(raise_exception=True)
+        return Response({"detail": "Password reset successful."}  )  
     
                 
         
