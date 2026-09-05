@@ -5,7 +5,8 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.utils.encoding import smart_str, force_bytes
+from django.utils.encoding import  force_bytes
+from django.utils.encoding import smart_str
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.conf import settings
 
@@ -62,7 +63,7 @@ class NewPasswordSerializer(serializers.Serializer):
     
     def validate(self, attrs):
         try:
-            user_id = smart_str(urlsafe_base64_decode(attrs["uidb64"]))
+            user_id = force_bytes(urlsafe_base64_decode(attrs["uidb64"]))
             user = User.object.get(id=user_id)  
             
             if not PasswordResetTokenGenerator().check_token(user, attrs["token"]):
