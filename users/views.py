@@ -1,4 +1,4 @@
-from .serializers import Signup
+from .serializers import Signup, PasswordResetRequestSerializer
 from .models import User
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.generics import CreateAPIView
@@ -8,6 +8,7 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt import token_blacklist
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import generics
 
 
 class SignUpView(CreateAPIView):
@@ -33,7 +34,16 @@ class LogoutView(APIView):
             return Response({
                 "message":"Invalid request or token"
             }, status=status.HTTP_400_BAD_REQUEST)    
+class PasswordResetView(generics.CreateAPIView):
+    serializer_class = PasswordResetRequestSerializer
+    
+    def post(self, request):
         
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        return Response({"Message":"reset link sent to email"})
+    
+                
         
 
 
