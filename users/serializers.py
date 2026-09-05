@@ -63,8 +63,8 @@ class NewPasswordSerializer(serializers.Serializer):
     
     def validate(self, attrs):
         try:
-            user_id = force_bytes(urlsafe_base64_decode(attrs["uidb64"]))
-            user = User.object.get(id=user_id)  
+            user_id = urlsafe_base64_decode(attrs["uidb64"]).decode()
+            user = User.objects.get(id=user_id)  
             
             if not PasswordResetTokenGenerator().check_token(user, attrs["token"]):
                 raise serializers.ValidationError("Invalid ") 
