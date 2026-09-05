@@ -55,7 +55,25 @@ class PasswordResetRequestSerializer(serializers.Serializer):
             
         return attrs     
             
+class NewPasswordSerializer(serializers.Serializer):
+    password = serializers.CharField(min_length=6)
+    uidb64 = serializers.CharField()
+    token = serializers.CharField()
+    
+    def validate(self, attrs):
+        try:
+            user_id = smart_str(urlsafe_base64_decode(attrs["uidb64"]))
+            user = User.object.get(id=user_id)  
             
+            if not PasswordResetTokenGenerator().check_token(user, attrs["token"]):
+                raise serializers.ValidationError("Invalid ") 
+            
+            user.set_password(attrs["password"])
+            user.save()
+            return user
+            
+        except Exception:
+             raise serializers.ValidationError("Invalid reset link")           
     
             
         
