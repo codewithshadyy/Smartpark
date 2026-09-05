@@ -33,7 +33,7 @@ class Signup(serializers.ModelSerializer):
         
 class PasswordResetRequestSerializer(serializers.Serializer):
     
-    email = serializers.EmailField(unique=True)
+    email = serializers.EmailField()
     
     def validate(self, attrs):
         email = attrs["email"]
