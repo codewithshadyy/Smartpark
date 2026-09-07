@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from .models import Slot
+from .serializers import SLotSerializer
+from rest_framework.response import Response
 
-# Create your views here.
+
+class SlotViewSet(viewsets.ModelViewSet):
+    
+    viewsets = Slot.objects.all()
+    serializer_class = SLotSerializer
