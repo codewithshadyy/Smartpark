@@ -6,5 +6,6 @@ from rest_framework.response import Response
 
 class SlotViewSet(viewsets.ModelViewSet):
     
-    viewsets = Slot.objects.all()
+    
+    queryset = Slot.objects.all()
     serializer_class = SLotSerializer
