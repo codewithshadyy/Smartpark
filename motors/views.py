@@ -8,6 +8,8 @@ from .models import Motor
 
 class CreateMotorApiView(generics.CreateAPIView):
     
+    serializer_class = MotorSerializer
+    
     def post(self, request):
         
         serializer = MotorSerializer(data=request.data)
@@ -18,4 +20,8 @@ class CreateMotorApiView(generics.CreateAPIView):
         
         return Response(serializer.errors)
     
+    
+class GetMotorDetails(generics.ListAPIView):
+    serializer_class = MotorSerializer
+    queryset = Motor.objects.all()    
     
