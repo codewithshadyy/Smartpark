@@ -8,6 +8,8 @@ class Slot(models.Model):
         
     
 
-    number = models.CharField(max_length=15)
+    number = models.CharField(max_length=15, unique=True)
     status = models.CharField(choices=SlotSatus, default=SlotSatus.VACANT) 
     
+    def __str__(self):
+        return f"{self.number}"
