@@ -5,4 +5,4 @@ from .models import PriceConfiguration
 @admin.register(PriceConfiguration)
 
 class PriceConfigurationAdmin(admin.ModelAdmin):
-    list_display = ('car_type', 'hourly_rate')
+    list_display = ('motor_type', 'hourly_rate')
