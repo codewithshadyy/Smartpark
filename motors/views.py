@@ -5,6 +5,7 @@ from .serializers import MotorSerializer
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import generics
 from .models import Motor
+from rest_framework.permissions import IsAdminUser
 
 class CreateMotorApiView(generics.CreateAPIView):
     
@@ -23,5 +24,11 @@ class CreateMotorApiView(generics.CreateAPIView):
     
 class GetMotorDetails(generics.ListAPIView):
     serializer_class = MotorSerializer
-    queryset = Motor.objects.all()    
+    queryset = Motor.objects.all()
+
+class MotorDetailView(generics.RetrieveAPIView):
+    queryset = Motor.objects.all()
+    serializer_class = MotorSerializer
+      
+
     
