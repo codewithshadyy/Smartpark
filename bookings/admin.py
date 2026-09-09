@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import PriceConfiguration
+
+@admin.register(PriceConfiguration)
+
+class PriceConfigurationAdmin(admin.ModelAdmin):
+    list_display = ('car_type', 'hourly_rate')
