@@ -11,7 +11,7 @@ class BookingSerializer(serializers.ModelSerializer):
     hourly_rate = serializers.ReadOnlyField()
     total_charges = serializers.ReadOnlyField()
     
-    client = UserSerializer(source='user',read_only=True)
+    client = UserSerializer(read_only=True, source="user")
     
     motor = serializers.PrimaryKeyRelatedField(
     queryset=Motor.objects.all()
@@ -22,6 +22,7 @@ class BookingSerializer(serializers.ModelSerializer):
       )
     
     class Meta:
+        model = Booking
         fields = [
                   'id',
                   'client', 

@@ -20,7 +20,7 @@ class PriceConfiguration(models.Model):
         decimal_places=2,
         help_text="Hourly rate charge for this vehicle type.")
     def __str__(self):
-        return f"{self.get_motor_type.display()}: ${self.hourly_rate}/hr"
+        return f"{self.get_motor_type_display()}: ${self.hourly_rate}/hr"
     
     
     

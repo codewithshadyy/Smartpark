@@ -15,7 +15,7 @@ class BookingApiView(CreateAPIView):
         serializer = BookingSerializer(data=request.data)
         
         if serializer.is_valid():
-            serializer.save(client=request.user)
+            serializer.save(user=request.user)
             return Response({
                 'data':serializer.data
             })
