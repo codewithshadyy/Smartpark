@@ -59,15 +59,17 @@ class BookingSerializer(serializers.ModelSerializer):
           }
         )
       
-      user = self.context['request'].user
+      
       
       booking = Booking.objects.create(
-        user=user,
+        
         **validated_data
       )  
       
       slot.status = Slot.SlotSatus.BOOKED
       slot.save(update_fields=['status'])
+      
+      return booking
       
         
       

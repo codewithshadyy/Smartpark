@@ -21,7 +21,7 @@ class BookingApiView(CreateAPIView):
             })
         
         return Response({
-            'errors':serializer.data
+            'errors':serializer.errors
         })
         
             
