@@ -12,4 +12,4 @@ class Slot(models.Model):
     status = models.CharField(choices=SlotSatus, default=SlotSatus.VACANT) 
     
     def __str__(self):
-        return f"{self.number}"
+        return f"{self.number}:{self.status}"
