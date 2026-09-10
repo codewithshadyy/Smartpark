@@ -30,6 +30,8 @@ class Booking(models.Model):
     class BookingStatus(models.TextChoices):
         PAID = 'paid', 'Paid'
         RESERVED = 'reserved', 'Reserved'
+        OCCUPIED = 'Occupied', 'occupied'
+        COMPLETED = 'Completed', 'completed'
         CANCELLED = 'Cancelled' , 'Cancelled'
       
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookings')
