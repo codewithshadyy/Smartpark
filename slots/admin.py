@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Slot
+
+@admin.register(Slot)
+
+class SlotAdmin(admin.ModelAdmin):
+    list_display = ['number', 'status']
