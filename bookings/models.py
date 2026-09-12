@@ -28,9 +28,10 @@ class PriceConfiguration(models.Model):
 class Booking(models.Model):
     
     class BookingStatus(models.TextChoices):
-        PAID = 'paid', 'Paid'
         RESERVED = 'reserved', 'Reserved'
-        CANCELLED = 'Cancelled' , 'Cancelled'
+        OCCUPIED = 'occupied', 'Occupied'
+        COMPLETED = 'completed', 'Completed'
+        CANCELLED = 'cancelled', 'Cancelled'
       
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookings')
     motor =  models.ForeignKey(Motor, on_delete=models.PROTECT, related_name='bookings')
