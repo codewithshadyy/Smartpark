@@ -1,4 +1,4 @@
-from .serializers import Signup, PasswordResetRequestSerializer, NewPasswordSerializer
+from .serializers import Signup, PasswordResetRequestSerializer, NewPasswordSerializer, UserSerializer
 from .models import User
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.generics import CreateAPIView
@@ -57,8 +57,13 @@ class NewPasswordView(generics.CreateAPIView):
         
         
         serializer.is_valid(raise_exception=True)
-        return Response({"detail": "Password reset successful."}  )  
+        return Response({"detail": "Password reset successful."}  ) 
+     
+class ViewClients(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
     
+        
                 
         
 

@@ -12,6 +12,14 @@ from django.conf import settings
 
 from django.core.mail  import send_mail
 
+class UserSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = User
+        fields = ['id','username', 'email', 'role']
+
+
+
 class Signup(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, min_length=8)
     
