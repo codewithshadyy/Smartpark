@@ -9,7 +9,7 @@ from rest_framework_simplejwt import token_blacklist
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import generics
-from .permissions import IsAdminUser
+from .permissions import IsAdminUser, IsAttendantUser
 
 
 class SignUpView(CreateAPIView):
@@ -63,7 +63,7 @@ class NewPasswordView(generics.CreateAPIView):
 class ViewClients(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAttendantUser]
     
         
                 
