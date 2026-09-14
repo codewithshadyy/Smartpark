@@ -12,3 +12,9 @@ class CreateSLotApiView(generics.CreateAPIView):
     queryset = Slot.objects.all()
     serializer_class = SLotSerializer
     permission_classes = [IsAdminUser]
+
+class ListSLotsApiView(generics.ListAPIView):
+    queryset = Slot.objects.all()
+    serializer_class = SLotSerializer
+    
+    
