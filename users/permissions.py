@@ -25,4 +25,4 @@ class IsClientUser(BasePermission):
         if not (request.user and request.user.is_authenticated):
             return False
             
-        return request.user.role in ['admin', 'client']
+        return request.user.role in ['admin', 'client', 'attendant']
